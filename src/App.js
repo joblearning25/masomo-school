@@ -17,6 +17,8 @@ import Classes from './components/admin/Classes';
 import Teachers from './components/admin/Teachers';
 import Student from './components/admin/Student';
 import Parents from './components/admin/Parents';
+import ClassAdd from './components/admin/forms/ClassAdd';
+import ClassEdit from './components/admin/forms/ClassEdit';
 
 function App() {
   return (
@@ -35,7 +37,11 @@ function App() {
           </ProtectedRoute>
         }>
           <Route  path='' element={<AdminDashboard/>}/>
+          
           <Route  path='classes' element={<Classes/>}/>
+          <Route  path='classes/add' element={<ClassAdd/>}/>
+          <Route  path='classes/edit' element={<ClassEdit/>}/>
+
           <Route  path='teachers' element={<Teachers/>}/>
           <Route  path='students' element={<Student/>}/>
           <Route  path='parents' element={<Parents/>}/>
