@@ -25,6 +25,10 @@ import ParentsAdd from './components/admin/forms/ParentsAdd';
 import ParentsEdit from './components/admin/forms/ParentsEdit';
 import StudentsAdd from './components/admin/forms/StudentsAdd';
 import StudentEdit from './components/admin/forms/StudentEdit';
+import TeacherLayout from './components/teacher/TeacherLayout';
+import TeacherDashboard from './components/teacher/TeacherDashboard';
+import ParentLayout from './components/parent/ParentLayout';
+import ParentDashboard from './components/parent/ParentDashboard';
 
 function App() {
   return (
@@ -61,6 +65,29 @@ function App() {
           <Route  path='parents/edit' element={<ParentsEdit/>}/>
 
         </Route>
+
+        {/* Teacher Protected Routes */}
+        <Route  path='/teacher-dashboard'
+        element={
+          <ProtectedRoute allowedRoles={['teacher']}>
+            <TeacherLayout/>
+          </ProtectedRoute>
+        }>
+          <Route  path='' element={<TeacherDashboard/>}/>
+          
+        </Route>
+
+        {/* Parent Protected Routes */}
+        <Route  path='/parent-dashboard'
+        element={
+          <ProtectedRoute allowedRoles={['parent']}>
+            <ParentLayout/>
+          </ProtectedRoute>
+        }>
+          <Route  path='' element={<ParentDashboard/>}/>
+          
+        </Route>
+
 
         <Route path='/login' element={<LoginComponent/>}/>
         <Route path='/register' element={<RegisterComponent/>}/>

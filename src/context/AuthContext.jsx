@@ -8,8 +8,16 @@ const AuthProvider=({children})=>{
 
     // initialize state from local storage
     const [token,setToken]=useState(()=>localStorage.getItem('token')|| '')
-    const [user,setUser]=useState(()=>JSON.parse(localStorage.getItem('user')|| 'null'))
-
+    const [user, setUser] = useState(() => {
+        try {
+          const stored = localStorage.getItem('user')
+          return stored ? JSON.parse(stored) : null
+        } catch (e) {
+          console.error('Error parsing user from localStorage:', e)
+          return null
+        }
+      })
+      
     // Logout 
     const logout=useCallback(()=>{
         localStorage.clear()
